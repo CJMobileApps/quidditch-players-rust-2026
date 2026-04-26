@@ -3,16 +3,6 @@
 version = 4
 
 [[package]]
-name = "quidditch-players-rust-2026"
-version = "0.1.0"
-dependencies = [
- "axum",
- "serde",
- "tokio",
- "uuid",
-]
-
-[[package]]
 name = "anyhow"
 version = "1.0.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
