@@ -1,6 +1,11 @@
 [package]
-name = "quidditch-players-rust-2025"
+name = "quidditch-players-rust-2026"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+axum = { version = "0.8.9", features = ["macros"] }
+
+serde = { version = "1.0.228", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+uuid = { version = "1.23.1", features = ["v4"] }
