@@ -1,6 +1,8 @@
 use axum::Router;
 
 mod api;
+mod data;
+
 use api::house::controller::house_controller::router;
 
 #[tokio::main]
