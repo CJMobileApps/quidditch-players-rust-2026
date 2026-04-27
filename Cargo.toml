@@ -9,3 +9,4 @@ axum = { version = "0.8.9", features = ["macros"] }
 serde = { version = "1.0.228", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
 uuid = { version = "1.23.1", features = ["v4"] }
+rand = "0.10.1" #TODO get rid of this in the future
