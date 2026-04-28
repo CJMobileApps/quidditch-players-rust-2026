@@ -13,6 +13,7 @@ async fn main() {
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
     server_details();
     axum::serve(listener, app).await.unwrap();
+    
 }
 
 fn server_details() {
