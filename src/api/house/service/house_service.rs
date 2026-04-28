@@ -1,10 +1,10 @@
 use std::sync::Arc;
-use crate::api::house::controller::house_controller::AppError;
 use crate::api::house::repository::house_repository::HouseRepository;
 use crate::data::model::house::{House, HouseName};
+use crate::util::error::QuidditchPlayersError;
 
 pub trait HouseService: Send + Sync {
-    fn get_all_houses(&self) -> Result<Vec<House>, AppError>;
+    fn get_all_houses(&self) -> Result<Vec<House>, QuidditchPlayersError>;
 }
 
 pub struct HouseServiceImpl {
@@ -18,7 +18,7 @@ impl HouseServiceImpl {
 }
 
 impl HouseService for HouseServiceImpl {
-    fn get_all_houses(&self) -> Result<Vec<House>, AppError> {
+    fn get_all_houses(&self) -> Result<Vec<House>, QuidditchPlayersError> {
         self.user_repository.get_all_houses()
     }
 }

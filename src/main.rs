@@ -2,6 +2,7 @@ use axum::Router;
 
 mod api;
 mod data;
+mod util;
 
 use api::house::controller::house_controller::router;
 

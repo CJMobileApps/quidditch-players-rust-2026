@@ -1,26 +1,32 @@
-use crate::api::house::controller::house_controller::AppError;
 use crate::data::model::house::{House, HouseName};
+use crate::util::error::QuidditchPlayersError;
 
 pub trait HouseRepository: Send + Sync {
-    fn get_all_houses(&self) -> Result<Vec<House>, AppError>;
+    fn get_all_houses(&self) -> Result<Vec<House>, QuidditchPlayersError>;
 }
 
 pub struct HouseRepositoryImpl {}
 
 impl HouseRepository for HouseRepositoryImpl {
-    fn get_all_houses(&self) -> Result<Vec<House>, AppError> {
-        let n = rand::random_range(0..=1_u32);
+    fn get_all_houses(&self) -> Result<Vec<House>, QuidditchPlayersError> {
+        let rand_number = rand::random_range(1..=10_u32);
 
-        if n == 0 {
-            Err(AppError::BadRequest("Some bad request".to_string()))
-        } else {
-            let house = House {
-                name: HouseName::Gryffindor,
-                image_url: "https://static.wikia.nocookie.net/harrypotter/images/9/98/Gryffindor.jpg/revision/latest".to_string(),
-                emoji: "\u{1F981}".to_string(),
-            };
+        match rand_number {
+            1..7 => {
+                let house = House {
+                    name: HouseName::Gryffindor,
+                    image_url: "https://static.wikia.nocookie.net/harrypotter/images/9/98/Gryffindor.jpg/revision/latest".to_string(),
+                    emoji: "\u{1F981}".to_string(),
+                };
 
-            Ok(vec![house])
+                Ok(vec![house])
+            }
+            9 => {
+                Err(QuidditchPlayersError::YouSentABadRequest(None))
+            }
+            _ => {
+                Err(QuidditchPlayersError::InternalServerError(None))
+            }
         }
     }
 }

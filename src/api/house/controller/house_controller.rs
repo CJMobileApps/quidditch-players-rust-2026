@@ -26,24 +26,8 @@ pub fn router() -> Router {
 //     Json::from(house)
 // }
 
-pub enum AppError {
-    NotFound(String),
-    BadRequest(String),
-    InternalError(String),
-}
 
-impl IntoResponse for AppError {
-    fn into_response(self) -> Response {
-        let (status, message) = match self {
-            AppError::NotFound(msg)      => (StatusCode::NOT_FOUND, msg),
-            AppError::BadRequest(msg)    => (StatusCode::BAD_REQUEST, msg),
-            AppError::InternalError(msg) => (StatusCode::INTERNAL_SERVER_ERROR, msg),
-        };
 
-        let body = Json(format!(r#"{{"error": "{}"}}"#, message));
-        (status, body).into_response()
-    }
-}
 
 #[cfg_attr(debug_assertions, axum::debug_handler)]
 pub async fn get_house_handler(
@@ -55,19 +39,7 @@ pub async fn get_house_handler(
             (StatusCode::OK, Json::from(houses)).into_response()
 
         }
-        Err(error) => {
-            match error {
-                AppError::NotFound(e) => {
-                    e.to_string().into_response()
-                }
-                AppError::BadRequest(e) => {
-                    e.to_string().into_response()
-                } 
-                AppError::InternalError(e) => {
-                    e.to_string().into_response()
-                }
-            }
-        }
+        Err(error) => error.into_response()
     }
     
     // let n = rand::random_range(0..=1_u32);
