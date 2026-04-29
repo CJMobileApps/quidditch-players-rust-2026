@@ -1,11 +1,13 @@
-use std::sync::Arc;
+use crate::api::house::repository::house_repository::{HouseRepository, HouseRepositoryImpl};
+use crate::api::house::service::house_service::{HouseService, HouseServiceImpl};
+use crate::data::model::response_wrapper::ResponseWrapper;
+use crate::util::constants::Constants;
+use axum::extract::State;
 use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::routing::get;
 use axum::{Json, Router};
-use axum::extract::State;
-use crate::api::house::repository::house_repository::{HouseRepository, HouseRepositoryImpl};
-use crate::api::house::service::house_service::{HouseService, HouseServiceImpl};
+use std::sync::Arc;
 
 pub fn router() -> Router {
     let repository: Arc<dyn HouseRepository> = Arc::new(HouseRepositoryImpl {});
@@ -17,16 +19,18 @@ pub fn router() -> Router {
 }
 
 #[cfg_attr(debug_assertions, axum::debug_handler)]
-pub async fn get_house_handler(
-    State(service): State<Arc<dyn HouseService>>,
-) -> Response {
-    
+pub async fn get_house_handler(State(service): State<Arc<dyn HouseService>>) -> Response {
     match service.get_all_houses() {
-        Ok(houses) => {
-            (StatusCode::OK, Json::from(houses)).into_response()
-
-        }
-        Err(error) => error.into_response()
+        Ok(houses) => (
+            StatusCode::OK,
+            Json(ResponseWrapper {
+                data: Some(houses),
+                error: None,
+                status_code: Constants::OK_CODE,
+            }),
+        )
+            .into_response(),
+        Err(error) => error.into_response(),
     }
 }
 
