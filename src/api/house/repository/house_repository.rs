@@ -22,16 +22,11 @@ impl HouseRepository for HouseRepositoryImpl {
                 Ok(vec![house])
             }
             9 => {
-                Err(QuidditchPlayersError::YouSentABadRequest(None))
+                Err(QuidditchPlayersError::ClientError(None))
             }
             _ => {
-                Err(QuidditchPlayersError::InternalServerError(None))
+                Err(QuidditchPlayersError::InternalError(None))
             }
         }
     }
 }
-
-// interface HouseService {
-// @Throws(ClientException::class, InternalException::class)
-// suspend fun getAllHouses(): List<House>
-// }

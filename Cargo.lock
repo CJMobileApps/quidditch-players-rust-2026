@@ -456,7 +456,6 @@ name = "quidditch-players-rust-2026"
 version = "0.1.0"
 dependencies = [
  "axum",
- "log",
  "rand",
  "serde",
  "serde_json",

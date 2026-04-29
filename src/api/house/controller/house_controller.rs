@@ -16,19 +16,6 @@ pub fn router() -> Router {
         .with_state(service)
 }
 
-// #[cfg_attr(debug_assertions, axum::debug_handler)]
-// pub async fn get_house_handler() -> Json<House> {
-//     let house = House {
-//         name: HouseName::Gryffindor,
-//         image_url : "https://static.wikia.nocookie.net/harrypotter/images/9/98/Gryffindor.jpg/revision/latest".to_string(),
-//         emoji : "\u{1F981}".to_string()
-//     };
-//     Json::from(house)
-// }
-
-
-
-
 #[cfg_attr(debug_assertions, axum::debug_handler)]
 pub async fn get_house_handler(
     State(service): State<Arc<dyn HouseService>>,
@@ -41,21 +28,6 @@ pub async fn get_house_handler(
         }
         Err(error) => error.into_response()
     }
-    
-    // let n = rand::random_range(0..=1_u32);
-    // 
-    // 
-    // if n == 0 {
-    //     AppError::BadRequest("Some bad request".to_string()).into_response()
-    // } else {
-    //     let house = House {
-    //         name: HouseName::Gryffindor,
-    //         image_url : "https://static.wikia.nocookie.net/harrypotter/images/9/98/Gryffindor.jpg/revision/latest".to_string(),
-    //         emoji : "\u{1F981}".to_string()
-    //     };
-    //     
-    //     (StatusCode::OK, Json::from(service.get_all_houses())).into_response()
-    // }
 }
 
 //TODO https://claude.ai/chat/83dd58f3-0e6d-4d9b-9f8e-457195d2aecc

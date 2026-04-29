@@ -11,4 +11,3 @@ serde_json = "1"
 tokio = { version = "1", features = ["full"] }
 uuid = { version = "1.23.1", features = ["v4"] }
 rand = "0.10.1"
-log = "0.4.29" #TODO get rid of this in the future

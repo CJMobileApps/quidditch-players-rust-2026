@@ -1,6 +1,6 @@
 use std::sync::Arc;
 use crate::api::house::repository::house_repository::HouseRepository;
-use crate::data::model::house::{House, HouseName};
+use crate::data::model::house::House;
 use crate::util::error::QuidditchPlayersError;
 
 pub trait HouseService: Send + Sync {
@@ -22,8 +22,3 @@ impl HouseService for HouseServiceImpl {
         self.user_repository.get_all_houses()
     }
 }
-
-// interface HouseService {
-// @Throws(ClientException::class, InternalException::class)
-// suspend fun getAllHouses(): List<House>
-// }
