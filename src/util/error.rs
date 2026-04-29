@@ -54,7 +54,7 @@ impl ResponseWrapperTrait for QuidditchPlayersError {
                     is_error: true,
                     message: Some(self.to_string()),
                 }),
-                status_code: StatusCode::INTERNAL_SERVER_ERROR.as_u16() as i32,
+                status_code: Constants::INTERNAL_SERVER_ERROR_CODE,
             },
             QuidditchPlayersError::ClientError(_) => ResponseWrapper {
                 data: None,
@@ -62,7 +62,7 @@ impl ResponseWrapperTrait for QuidditchPlayersError {
                     is_error: true,
                     message: Some(self.to_string()),
                 }),
-                status_code: StatusCode::BAD_REQUEST.as_u16() as i32,
+                status_code: Constants::BAD_REQUEST_CODE,
             },
         }
     }
