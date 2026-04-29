@@ -30,7 +30,7 @@ impl fmt::Display for QuidditchPlayersError {
 
 impl IntoResponse for QuidditchPlayersError {
     fn into_response(self) -> Response {
-        let (status) = match &self {
+        let status = match &self {
             QuidditchPlayersError::InternalError(_) => StatusCode::INTERNAL_SERVER_ERROR,
             QuidditchPlayersError::ClientError(_) => StatusCode::BAD_REQUEST,
         };
@@ -48,7 +48,7 @@ impl IntoResponse for QuidditchPlayersError {
 impl ResponseWrapperTrait for QuidditchPlayersError {
     fn to_response_wrapper(&self) -> ResponseWrapper<()> {
         match self {
-            QuidditchPlayersError::InternalError(msg) => ResponseWrapper {
+            QuidditchPlayersError::InternalError(_) => ResponseWrapper {
                 data: None,
                 error: Some(ResponseError {
                     is_error: true,
@@ -56,7 +56,7 @@ impl ResponseWrapperTrait for QuidditchPlayersError {
                 }),
                 status_code: StatusCode::INTERNAL_SERVER_ERROR.as_u16() as i32,
             },
-            QuidditchPlayersError::ClientError(msg) => ResponseWrapper {
+            QuidditchPlayersError::ClientError(_) => ResponseWrapper {
                 data: None,
                 error: Some(ResponseError {
                     is_error: true,
