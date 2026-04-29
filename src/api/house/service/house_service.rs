@@ -4,7 +4,7 @@ use crate::data::model::house::House;
 use crate::util::error::QuidditchPlayersError;
 
 pub trait HouseService: Send + Sync {
-    fn get_all_houses(&self) -> Result<Vec<House>, QuidditchPlayersError>;
+    fn get_all_houses(&self) -> Result<&[House], QuidditchPlayersError>;
 }
 
 pub struct HouseServiceImpl {
@@ -18,7 +18,7 @@ impl HouseServiceImpl {
 }
 
 impl HouseService for HouseServiceImpl {
-    fn get_all_houses(&self) -> Result<Vec<House>, QuidditchPlayersError> {
+    fn get_all_houses(&self) -> Result<&[House], QuidditchPlayersError> {
         self.user_repository.get_all_houses()
     }
 }
