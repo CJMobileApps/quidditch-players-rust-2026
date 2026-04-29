@@ -1,5 +1,4 @@
-use std::ops::Deref;
-use crate::data::model::house::{House, HouseName};
+use crate::data::model::house::House;
 use crate::data::mock_data::MockData;
 use crate::util::error::QuidditchPlayersError;
 
