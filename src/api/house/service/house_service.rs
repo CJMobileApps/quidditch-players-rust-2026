@@ -8,17 +8,17 @@ pub trait HouseService: Send + Sync {
 }
 
 pub struct HouseServiceImpl {
-    user_repository: Arc<dyn HouseRepository>,
+    house_repository: Arc<dyn HouseRepository>,
 }
 
 impl HouseServiceImpl {
-    pub fn new(user_repository: Arc<dyn HouseRepository>) -> Self {
-        Self { user_repository }
+    pub fn new(house_repository: Arc<dyn HouseRepository>) -> Self {
+        Self { house_repository }
     }
 }
 
 impl HouseService for HouseServiceImpl {
     fn get_all_houses(&self) -> Result<&[House], QuidditchPlayersError> {
-        self.user_repository.get_all_houses()
+        self.house_repository.get_all_houses()
     }
 }

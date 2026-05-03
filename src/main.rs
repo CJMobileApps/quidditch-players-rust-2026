@@ -4,17 +4,18 @@ mod api;
 mod data;
 mod util;
 
-use api::house::controller::house_controller::router;
+use crate::api::house::controller::house_controller;
+use crate::api::player::controller::player_controller;
 
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .nest("/api/v1/quidditchplayers/house", router());
+        .nest("/api/v1/quidditchplayers/house", house_controller::router())
+        .nest("/api/v1/quidditchplayers/player", player_controller::router());
              
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
     server_details();
     axum::serve(listener, app).await.unwrap();
-    
 }
 
 fn server_details() {
