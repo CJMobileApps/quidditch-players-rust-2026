@@ -2,7 +2,8 @@ use std::fmt;
 
 #[derive(Debug, serde::Serialize)]
 pub struct House {
-    pub name: HouseName,
+    pub name: String,
+    #[serde(rename = "imageUrl")]
     pub image_url: String,
     pub emoji: String,
 }
