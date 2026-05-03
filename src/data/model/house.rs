@@ -1,3 +1,5 @@
+use std::fmt;
+
 #[derive(Debug, serde::Serialize)]
 pub struct House {
     pub name: HouseName,
@@ -11,4 +13,15 @@ pub enum HouseName {
     Slytherin,
     Ravenclaw,
     Hufflepuff,
+}
+
+impl fmt::Display for HouseName {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            HouseName::Gryffindor => write!(f, "GRYFFINDOR"),
+            HouseName::Slytherin => write!(f, "SLYTHERIN"),
+            HouseName::Ravenclaw => write!(f, "RAVENCLAW"),
+            HouseName::Hufflepuff => write!(f, "HUFFLEPUFF"),
+        }
+    }
 }

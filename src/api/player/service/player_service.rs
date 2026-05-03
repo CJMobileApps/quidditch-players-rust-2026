@@ -4,7 +4,7 @@ use crate::data::model::player::Player;
 use crate::util::error::QuidditchPlayersError;
 
 pub trait PlayerService: Send + Sync {
-    fn get_players(&self) -> Result<&[Player], QuidditchPlayersError>;
+    fn get_players(&self, house_name: Option<String>) -> Result<Vec<Player>, QuidditchPlayersError>;
 }
 
 pub struct PlayerServiceImpl {
@@ -18,7 +18,7 @@ impl PlayerServiceImpl {
 }
 
 impl PlayerService for PlayerServiceImpl {
-    fn get_players(&self) -> Result<&[Player], QuidditchPlayersError> {
-        self.player_repository.get_players()
+    fn get_players(&self, house_name: Option<String>) -> Result<Vec<Player>, QuidditchPlayersError> {
+        self.player_repository.get_players(house_name)
     }
 }
