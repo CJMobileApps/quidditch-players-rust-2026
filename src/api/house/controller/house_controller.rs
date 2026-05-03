@@ -22,22 +22,23 @@ pub fn router() -> Router {
 
 #[cfg_attr(debug_assertions, axum::debug_handler)]
 pub async fn get_house_handler(State(service): State<Arc<dyn HouseService>>) -> Response {
-    match service.get_all_houses() {Ok(houses) => {
-        let mut response = (
-            StatusCode::OK,
-            Json(ResponseWrapper {
-                data: Some(houses),
-                error: None,
-                status_code: Constants::OK_CODE,
-            }),
-        ).into_response();
+    match service.get_all_houses() {
+        Ok(houses) => {
+            let mut response = (
+                StatusCode::OK,
+                Json(ResponseWrapper {
+                    data: Some(houses),
+                    error: None,
+                    status_code: Constants::OK_CODE,
+                }),
+            ).into_response();
 
-        response.headers_mut().typed_insert(
-            CacheControl::new().with_max_age(Duration::from_secs(60))
-        );
+            response.headers_mut().typed_insert(
+                CacheControl::new().with_max_age(Duration::from_secs(60))
+            );
 
-        response
-    },
+            response
+        }
         Err(error) => error.into_response(),
     }
 }

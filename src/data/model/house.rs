@@ -5,7 +5,7 @@ pub struct House {
     pub emoji: String,
 }
 
-#[derive(Debug, serde::Serialize)]
+#[derive(Debug, serde::Serialize, Clone)]
 pub enum HouseName {
     Gryffindor,
     Slytherin,
