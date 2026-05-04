@@ -78,12 +78,20 @@ Returns all Quidditch positions.
 
 ```json
 {
-    "data": [
-        { "positionName": "Chaser" },
-        { "positionName": "Beater" },
-        { "positionName": "Keeper" },
-        { "positionName": "Seeker" }
-    ],
+    "data": {
+        "1": {
+            "positionName": "Chaser"
+        },
+        "4": {
+            "positionName": "Seeker"
+        },
+        "3": {
+            "positionName": "Keeper"
+        },
+        "2": {
+            "positionName": "Beater"
+        }
+    },
     "status_code": 200
 }
 ```
