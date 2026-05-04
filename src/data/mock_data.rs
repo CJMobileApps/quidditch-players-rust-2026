@@ -12,6 +12,7 @@ impl MockData {
     pub(crate) fn get_all_quidditch_teams() -> &'static Vec<Player> {
         &ALL_QUIDDITCH_TEAMS
     }
+
     pub(crate) fn get_gryffindor_team() -> &'static Vec<Player> {
         &GRYFFINDOR_TEAM
     }
@@ -34,6 +35,25 @@ impl MockData {
 
     pub(crate) fn get_positions() -> &'static HashMap<i32, Position> {
         &POSITIONS
+    }
+
+    pub(crate) fn get_statuses(name: &str, favorite_subject: &str) -> Vec<String> {
+        vec![
+            format!("{} is studying {} \u{1F4DA}", name, favorite_subject),
+            format!("{} is practicing Quidditch \u{1F9F9}", name),
+            format!("{} is eating in the Great Hall \u{1F357}", name),
+            format!("{} is serving detention with Mr. Flich \u{1F557}", name),
+            format!("{} is drinking butterbeer at Hogsmeade \u{1F37B}", name),
+            format!("{} is lost in the Forbidden Forest \u{1F332}", name),
+            format!("{} is sleeping in the Gryffindor Dormitory \u{1F634}", name),
+            format!("{} is relaxing in the Gryffindor Common Room \u{1F981}", name),
+            format!("{} is dueling a Slytherin \u{1F40D}", name),
+            format!("{} is destroying a horcrux \u{1F5E1}", name),
+            format!("{} is battling a basilisk in the Chamber of Secrets \u{1F92B}", name),
+            format!("{} is escaping Azkaban \u{1F6A3}", name),
+            format!("{} is breaking into the Ministry of Magic \u{1F52E}", name),
+            format!("{} is heading to put name into Goblet of Fire \u{1F525}", name),
+        ]
     }
 }
 

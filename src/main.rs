@@ -7,6 +7,7 @@ mod util;
 use crate::api::house::controller::house_controller;
 use crate::api::player::controller::player_controller;
 use crate::api::position::controller::position_controller;
+use crate::api::status::controller::status_controller;
 
 #[tokio::main]
 async fn main() {
@@ -19,6 +20,10 @@ async fn main() {
         .nest(
             "/api/v1/quidditchplayers/position",
             position_controller::router(),
+        )
+        .nest(
+            "/api/v1/quidditchplayers/player/status",
+            status_controller::router(),
         );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
